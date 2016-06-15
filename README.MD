@@ -19,9 +19,9 @@
   * `--hbs` adds handlebars
   * assumes you have [express-generator](https://www.npmjs.com/package/express-generator) package installed globally (`npm install -g express-generator`)
 - `cd name_of_app && npm i`
-  * `npm i` intalls all dependencies denoted by package.json
+  * `npm i` installs all dependencies denoted by package.json
 
-##### Set UP Knex
+##### Set Up Knex
 - `npm i -S pg knex` installs pg & knex, & adds both to the dependencies in package.json
   * in 'index.js' file, add `var pg = require('pg');`
   * [pg](https://www.npmjs.com/package/pg) is a module that lets you connect to psql; must be installed on a per project basis
@@ -40,7 +40,7 @@
   * Why? Because we are going to set the `DATABASE_URL` variable equal to our heroku URL, which contains a password that we don't want others to see
 
 ##### Set Up Heroku App & Database
-- `createdb [name_of_app]` creates psql database locally
+- `createdb name_of_app` creates psql database locally
 - `heroku apps:create name_of_app` creates a heroku app
 - `heroku addons:create heroku-postgresql --app name_of_app` adds postgresql database to the app
 - `heroku config` returns the URL
