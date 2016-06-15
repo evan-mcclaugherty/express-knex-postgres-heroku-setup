@@ -35,7 +35,7 @@
 - `touch .env` in root directory to create empty .env file
   * add 1 key-value pair per line; when assigning multiple values to one key, separate with `:`
   * this is where we define `DATABASE_URL=yourURL` later
-  * add `require('dotenv').config();` to top of 'knexfile.js', so that we can access the `DATABASE_URL` variable through `process.env` when we define our production environment connection
+  * add `require('dotenv').config();` to top of 'knexfile.js' (so that we can access the `DATABASE_URL` variable through `process.env` when we define our production environment connection). also add it to 'app.js' (if you're adding other variables that your app will refer to, so it will be available to all routes)
 - `echo .env >> .gitignore` adds .env file to .gitignore so git doesn't track it
   * Why? Because we are going to set the `DATABASE_URL` variable equal to our heroku URL, which contains a password that we don't want others to see
 
