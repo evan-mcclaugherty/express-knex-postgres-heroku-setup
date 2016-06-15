@@ -1,0 +1,119 @@
+This is an example for how to seed
+join tables!
+
+exports.seed = function(knex, Promise) {
+    return Promise.join(
+            knex('memberships').del(),
+            knex('meetups').del(),
+            knex('locations').del(),
+            knex('users').del()
+        )
+        .then(function() {
+            return Promise.join(
+                knex('locations').insert({
+                    name: 'Galvanize',
+                    address: 'Platte St, Denver'
+                }).returning('id'),
+                knex('locations').insert({
+                    name: 'Pivotal Labs',
+                    address: '17th St, Boulder'
+                }).returning('id'),
+                knex('locations').insert({
+                    name: 'Google',
+                    address: 'Pearl St, Boulder'
+                }).returning('id')
+            );
+        })
+        .then(function(ids) {
+            var galvanizeId = ids[0][0],
+                pivotalId = ids[1][0],
+                googleId = ids[2][0];
+
+            return Promise.join(
+                knex('meetups').insert({
+                    name: 'NodeJS',
+                    description: 'Learn all the scripts!',
+                    location_id: galvanizeId,
+                }).returning('id'),
+                knex('meetups').insert({
+                    name: 'Ruby',
+                    description: 'What a gem!',
+                    location_id: galvanizeId,
+                }).returning('id'),
+                knex('meetups').insert({
+                    name: 'PHP',
+                    description: 'And oldy but a goodie!',
+                    location_id: googleId,
+                }).returning('id'),
+                knex('meetups').insert({
+                    name: 'Python',
+                    description: 'Get your data on!',
+                    location_id: googleId,
+                }).returning('id')
+            );
+        })
+        .then(function(ids) {
+            var nodeId = ids[0][0],
+                rubyId = ids[1][0],
+                phpId = ids[2][0],
+                pythonId = ids[3][0];
+
+            return Promise.join(
+                knex('users').insert({
+                    name: 'Joe'
+                }).returning('id'),
+                knex('users').insert({
+                    name: 'Sue'
+                }).returning('id'),
+                knex('users').insert({
+                    name: 'Tim'
+                }).returning('id'),
+                knex('users').insert({
+                    name: 'Kim'
+                }).returning('id')
+            ).then(function(userIds) {
+                return {
+                    users: {
+                        joeId: userIds[0][0],
+                        sueId: userIds[1][0],
+                        timId: userIds[2][0],
+                        kimId: userIds[3][0],
+                    },
+                    meetups: {
+                        nodeId: nodeId,
+                        rubyId: rubyId,
+                        phpId: phpId,
+                        pythonId: pythonId,
+                    }
+                };
+            });
+        })
+        .then(function(data) {
+            return Promise.join(
+                knex('memberships').insert({
+                    user_id: data.users.joeId,
+                    meetup_id: data.meetups.pythonId
+                }),
+                knex('memberships').insert({
+                    user_id: data.users.joeId,
+                    meetup_id: data.meetups.phpId
+                }),
+                knex('memberships').insert({
+                    user_id: data.users.sueId,
+                    meetup_id: data.meetups.pythonId
+                }),
+                knex('memberships').insert({
+                    user_id: data.users.timId,
+                    meetup_id: data.meetups.rubyId
+                }),
+                knex('memberships').insert({
+                    user_id: data.users.timId,
+                    meetup_id: data.meetups.nodeId
+                }),
+                knex('memberships').insert({
+                    user_id: data.users.kimId,
+                    meetup_id: data.meetups.pythonId
+                })
+            );
+        });
+};
