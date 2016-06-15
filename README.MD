@@ -37,7 +37,7 @@
 
   - **knex migrate:latest --env production**
 
-- **seed your db: knex:seed seed_name**
+- **seed your db: knex seed:make seed_name**
 
   - **run with knex seed:run**
 
