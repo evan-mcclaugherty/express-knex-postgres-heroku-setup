@@ -5,8 +5,8 @@
 1. cd into clone && run npm install.
 2. Create a local db.
 3. Change knexfile.js to reflect your local db name.
-4. Create a heroku app && addon.
-5. put your heroku-postgresql url in the .env_example and **rename** right away to .env.
+4. Create a heroku app && postgresql addon.
+5. put your heroku-postgresql url in the .env_example and **rename file** right away to .env.
 6. Run knex commands to make migrations && seeds.
 7. Migrate latest!
 8. Don't forget to migrate to heroku.
