@@ -3,7 +3,7 @@ require('dotenv').load();
 module.exports = {
     development: {
         client: 'pg',
-        connection: 'postgres://localhost/intro_to_knex'
+        connection: 'postgres://localhost/YOUR-DB- NAME-HERE'
     },
     production: {
         client: 'pg',
