@@ -24,21 +24,19 @@
 - echo .env >> .gitignore
 - createdb name_of_app (in my opinion)
 - edit the knexfile.js
-- **create a heroku app: heroku apps:create name_of_app**
-- **add a db to the app: heroku addons:create heroku-postgresql**
-- **get the URL: heroku config**
+- create a heroku app: **heroku apps:create name_of_app**
+- add a db to the app: **heroku addons:create heroku-postgresql**
+- get the URL: **heroku config**
 - put that URL in .env
 - create a folder db and file knex.js
 - git remote add origin ssh_of_repo (create a repo)
 - git add/commit/push to github
-- **add migrations: knex migrate:make migration_name**
-- once finished run knex migrate:latest
-- **for your heroku app now run:**
-
+- add migrations: **knex migrate:make migration_name**
+- once finished run **knex migrate:latest**
+- for your heroku app now run:
   - **knex migrate:latest --env production**
-
-- **seed your db: knex seed:make seed_name**
-
-  - **run with knex seed:run**
-
+- seed your db: knex seed:make seed_name
+  - run with **knex seed:run**
+- for your heroku app now run:
+  - **knex migrate:latest --env production**
 - To deploy to heroku: git push heroku master.
