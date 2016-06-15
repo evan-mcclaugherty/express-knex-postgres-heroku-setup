@@ -38,5 +38,5 @@
 - seed your db: knex seed:make seed_name
   - run with **knex seed:run**
 - for your heroku app now run:
-  - **knex migrate:latest --env production**
+  - **knex seed:run --env production**
 - To deploy to heroku: git push heroku master.
