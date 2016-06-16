@@ -28,6 +28,7 @@
   * assumes you have [knex](https://www.npmjs.com/package/knex) package installed globally (`npm i knex -g`)
 - `knex init` creates 'knexfile.js' in root directory
 - In root directory, add a folder called 'db' & create 'knex.js' inside it
+  * in index.js file, add `var knex = require('../db/knex');`
   * refer to 'db/knex.js' in this repo for how to define your environment configurations
 
 ##### Initialize Git & Set Up .env File
