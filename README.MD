@@ -27,6 +27,9 @@
   * [pg](https://www.npmjs.com/package/pg) is a module that lets you connect to psql; must be installed on a per project basis
   * assumes you have [knex](https://www.npmjs.com/package/knex) package installed globally (`npm i knex -g`)
 - `knex init` creates 'knexfile.js' in root directory
+- In root directory, add a folder called 'db' & create 'knex.js' inside it
+  * in index.js file, add `var knex = require('../db/knex');`
+  * refer to 'db/knex.js' in this repo for how to define your environment configurations
 
 ##### Initialize Git & Set Up .env File
 - `git init` initializes git repo
@@ -35,7 +38,7 @@
 - `touch .env` in root directory to create empty .env file
   * add 1 key-value pair per line; when assigning multiple values to one key, separate with `:`
   * this is where we define `DATABASE_URL=yourURL` later
-  * add `require('dotenv').config();` to top of 'knexfile.js' (so that we can access the `DATABASE_URL` variable through `process.env` when we define our production environment connection). also add it to 'app.js' (if you're adding other variables that your app will refer to, so it will be available to all routes)
+  * add `require('dotenv').config();` to top of 'knexfile.js' (so that we can access the `DATABASE_URL` variable through `process.env` when we define our production environment connection). also add it to 'app.js' (if you're adding other variables that your app will refer to, so it will be available to all routes).
 - `echo .env >> .gitignore` adds .env file to .gitignore so git doesn't track it
   * Why? Because we are going to set the `DATABASE_URL` variable equal to our heroku URL, which contains a password that we don't want others to see
 
@@ -45,8 +48,6 @@
 - `heroku addons:create heroku-postgresql --app name_of_app` adds postgresql database to the app
 - `heroku config` returns the URL
   * add URL to .env file `DATABASE_URL=yourURL?ssl=true`
-- In root directory, add a folder called 'db' & create 'knex.js' inside it
-  * refer to 'db/knex.js' in this repo for how to define your environment configurations
 - create a repo on github & `git remote add origin ssh_of_repo` to add the remote
 - `git add/commit/push` to github
 - if you want to open a psql shell :shell: to the heroku database & run sql commands in the terminal: `heroku pg:psql --app name_of_app`
