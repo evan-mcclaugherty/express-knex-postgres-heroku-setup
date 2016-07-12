@@ -44,7 +44,7 @@
 
 ##### Set Up Heroku App & Database
 - `createdb name_of_app` creates psql database locally
-- `heroku apps:create name_of_app` creates a heroku app
+- `heroku apps:create name-of-app` creates a heroku app (Name must start with a letter and can only contain lowercase letters, numbers, and dashes.)
 - `heroku addons:create heroku-postgresql --app name_of_app` adds postgresql database to the app
 - `heroku config` returns the URL
   * add URL to .env file `DATABASE_URL=yourURL?ssl=true`
